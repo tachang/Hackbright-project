@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="gallery" align="center">
+<h2>City Gallery of {{destinationcity}}</h2>
+ 
+{% if img_list %}
+<div class="row">
+
+<div class="col-lg-6 col-xs-12" align="center">
+{% for img in img_list %}
+    <div class="thumbnails">
+    <img src="{{img[1]}}" alt="{{img[0]}}">
+    </div>
+
+
+
+{% endfor %}
+
+</div>
+
+<div class="preview col-lg-6 col-xs-12" align="center">
+    <h4>{{img_list[0][0]}}</h4>
+    <img src={{img_list[0][1]}} alt={{img_list[0][0]}}/><br>
+    
+</div>
+
+</div>
+
+
+{% else %}
+<p>Oh no...this city gallery is stil under construction :( </p>
+
+{% endif %}
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+
+function showPreview(evt){
+
+    var src=$(this).children("img").attr("src");
+    var title=$(this).children("img").attr("alt"); 
+    $(".preview img").attr("src",src);
+    $(".preview h4").html(title);
+}
+
+
+$('.thumbnails').on('mouseover', showPreview);
+
+</script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="row">
+<div class="col-lg-6 col-xs-12">
+<h2>You are going to {{destination_city}}</h2>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6 col-xs-12">
+    <h4>Your Flight!</h4>
+    <img src={{map_result}}>
+    <div id="flight_id" >{{current_flight_id}}</div>
+    <p>{{departure_airport}} to {{destination_airport}}</p>
+    <p>Departure Flight: {{outbound_carrier_id}} {{outbound_flight_number}} {{outbound_departure_time}} | {{outbound_arrival_time}}</p> 
+    <p>Return Flight: {{inbound_carrier_id}} {{inbound_flight_number}} {{inbound_departure_time}} | {{inbound_arrival_time}}</p> 
+    <p>Carrier: {{carrier}}</p>
+    <p>Price : {{flight_price}}</p>
+</div>
+
+
+
+
+<div class="col-lg-6 col-xs-12">
+<h4>Your Airbnb!</h4>
+<img src="{{picture_url}}">
+<div id="lodging_id">{{current_lodging_id}}</div>
+<a href="https://www.airbnb.com/rooms/{{airbnb_id}}" target="_blank">Airbnb Link</a>
+<p>Address: {{address}}</p> 
+<p>Price: USD{{price}}</p>
+
+
+</div>
+</div>
+
+
+
+
+<button type="button" class="btn btn-info" id="save-button" >Save</button>
+<div><p id="save-result"></p></div>  
+
+
+<form action="/home">
+    <input type="submit" class="btn btn-info" value="Search Again" />
+</form>
+
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<script>
+    //"use strict";
+
+    function showSaveResult(result) {
+        var status = result;
+        $('#save-result').html(status);
+    }
+
+    function sendIdToServer(){
+        
+        var sendIDs = {
+            "current_flight_id": $("#flight_id").html(),
+            "current_lodging_id": $("#lodging_id").html()
+        };
+
+        $.post('/savetrip', sendIDs, showSaveResult);
+    }
+
+    $('#save-button').on('click', sendIdToServer);
+</script>
+
+{% endblock %}

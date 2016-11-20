@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+<div class="col-lg-6 col-xs-12">
+<h2>You are going to {{destination_city}}</h2>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6 col-xs-12" >
+    <h4>Your Flight!</h4>
+    <img src={{map_result}}>
+    <p>{{trip_details.flight.departure_airport}} to {{trip_details.flight.destination_airport}}</p>
+    <p>Departure Flight: {{trip_details.flight.outbound_carrier_id}} {{trip_details.flight.outbound_flight_number}} {{trip_details.flight.outbound_departure_time}} | {{trip_details.flight.outbound_arrival_time}}</p> 
+    <p>Return Flight: {{trip_details.flight.inbound_carrier_id}} {{trip_details.flight.inbound_flight_number}} {{trip_details.flight.inbound_departure_time}} | {{trip_details.flight.inbound_arrival_time}}</p> 
+    <p>Carrier: {{trip_details.flight.carrier}}</p>
+    <p>Price : {{trip_details.flight.flight_price}}</p>
+</div>
+
+<div class="col-lg-6 col-xs-12" >
+<h4>Your Airbnb!</h4>
+<img src="{{trip_details.lodging.picture_url}}">
+<a href="https://www.airbnb.com/rooms/{{trip_details.lodging.airbnb_id}}" target="_blank">Airbnb Link</a>
+<p>Address: {{trip_details.lodging.address}}</p> 
+<p>Price: USD{{trip_details.lodging.price}}</p>
+
+
+</div>
+</div>
+
+
+<form action='/home/{{trip_details.trip_id}}/delete' method="POST">
+    <input type="submit" class="btn btn-info" id="delete-button" value="Delete" />
+</form> 
+
+<form action="/home">
+    <input type="submit" class="btn btn-info" value="Home" />
+</form>
+
+<a href="/view-city/{{destination_city}}" class="btn btn-info" role="button">View City</a>
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+
+
+<script>
+    "use strict";
+
+
+    function confirmDelete(evt){
+        var answer = confirm("Are you sure you want to delete the trip?");
+        if (answer){
+            alert("Your trip will be deleted.");
+        }
+        else{
+            evt.preventDefault();
+        }
+    }
+           
+    $('#delete-button').on('click', confirmDelete);
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>I am Feeling Lucky</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+</head>
+<body>
+
+
+
+<div class="alert alert-danger fade in">
+      {% for message in get_flashed_messages() %}
+        {{ message }}
+      {% endfor %}
+      <div id="logoutbtn">
+      <a href="/logout" class="btn btn-info" role="button">logout</a>
+    </div>
+</div>
+
+
+
+
+{% block content %}
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

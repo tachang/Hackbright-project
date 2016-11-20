@@ -1,0 +1,53 @@
+h4 {
+  color: gray; }
+  h4 span {
+    color: blue; }
+
+.initiallyHidden {
+  display: none; }
+
+.row .col-lg-6 #flight_id {
+          color: transparent; }
+
+#logoutbtn {
+    float: right; }
+
+    .savedtrip {
+      display: inline-block; }
+
+      #searchform {
+        width: 100%; }
+
+
+
+#lodging_id {
+  color: transparent; }
+
+#saved_trip_img{
+  height: 100px;
+  
+}
+
+.thumbnails {
+      display: inline-block; }
+.thumbnails img {
+    height: 50px;
+    border: 1px solid #555;
+    padding: 1px;
+    margin: 0 8px 8px 0;
+    border-radius: 2px;
+  }
+
+
+.thumbnails img:hover {
+    border: 2px solid #00ccff;
+    cursor:pointer;
+  }
+
+.preview img {
+/*    display: none; */
+    border: 2px solid #444;
+    padding: 1px;
+    width: 300px;
+    border-radius: 2px;
+  }
