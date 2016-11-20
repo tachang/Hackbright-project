@@ -1,0 +1,8 @@
+*secret.*
+env
+*.pyc
+*.docx
+*.DS_Store
+dump.*
+*.coverage
+htmlcov/
